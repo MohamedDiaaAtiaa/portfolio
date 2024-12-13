@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Diaa Portfolio</title>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Colors */
+        :root {
+            --dark-navy: #1B1F3B;
+            --soft-white: #F8F9FA;
+            --cyan: #00ADB5;
+            --coral-red: #FF6F61;
+        }
+
+        body {
+            background-color: var(--soft-white);
+            color: var(--dark-navy);
+        }
+
+        /* Parallax Section */
+        .parallax {
+            height: 100vh;
+            background: url('pbg.jpg') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .parallax h1 {
+            font-size: 3.5rem;
+        }
+/* About Section */
+.about-section {
+    padding: 100px 20px;
+    background-color: rgb(25, 25, 27);
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    align-items: flex-start;
+    opacity: 0; /* Hidden initially */
+    transform: translateY(50px); /* Slightly shifted down initially */
+    transition: all 0.8s ease; /* Smooth transition */
+}
+
+.about-section.active {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Returns to original position */
+}
+
+
+/* About Section Content */
+.about-section .text {
+    max-width: 800px; /* Wider for longer content */
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.about-section .image-frame {
+    width: 400px; /* Larger image */
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 3px solid var(--dark-navy);
+}
+
+.about-section .image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Additional Styling for Text Content */
+.about-section ul {
+    margin-top: 20px;
+    padding-left: 20px;
+    list-style: disc;
+}
+
+.about-section ul li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+        /* Certifications Section */
+  /* Certifications Section */
+/* Certifications Section */
+.certifications-section{
+    background-color: rgb(41, 41, 40);
+    color:white;
+}
+/* Default content styling */
+#main-content {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Shrinks and shifts content when sidenav is active */
+.sidenav-active #main-content {
+    transform: scale(0.9) translateX(250px); /* Shrinks content and shifts to the right */
+    filter: blur(1px); /* Optional: Slight blur effect */
+}
+
+.certifications-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-gap: 20px; /* Space between items */
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px; /* Optional: Limit max width */
+    margin: 0 auto; /* Center the grid in the container */
+}
+
+.cert-box {
+    width: 100%; /* Take full width of the grid column */
+    aspect-ratio: 4 / 3; /* Maintain a consistent ratio */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    background-color: var(--dark-navy);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.cert-box img {
+    width: 100%; /* Ensures image width matches the box */
+    height: 100%; /* Ensures image height matches the box */
+    object-fit: cover; /* Keeps the aspect ratio and fills the box */
+}
+
+/* Hover effect */
+.cert-box:hover {
+    transform: scale(1.05); /* Subtle zoom on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+}
+
+/* Keyframe Animation for Certifications */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cert-box {
+    animation: fadeInUp 0.8s ease forwards; /* Animation */
+    opacity: 0; /* Hidden initially */
+}
+
+.certifications-container .cert-box:nth-child(odd) {
+    animation-delay: 0.2s;
+}
+
+.certifications-container .cert-box:nth-child(even) {
+    animation-delay: 0.4s;
+}
+
+
+
+.languages-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 50px auto;
+    background-color: #161616;
+    color: white;
+}
+
+.lang-card {
+    width: 250px; /* Increased size */
+    background-color: var(--soft-white);
+    color: var(--dark-navy);
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+}
+
+.lang-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.lang-card img {
+    width: 120px; /* Larger icon size */
+    height: 200px;
+    margin-bottom: 20px;
+    border-radius: 15px; /* Optional: Rounded edges */
+}
+
+.lang-card p {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.lang-card span {
+    font-size: 1rem;
+    color: #555; /* Subtle text color for the description */
+}
+.languages-section{
+    color: white;
+    background-color: #161616;
+}
+
+        /* Side Navigation */
+        .sidenav {
+            position: fixed;
+            left: -250px;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background-color: var(--dark-navy);
+            color: var(--soft-white);
+            transition: left 0.3s;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            z-index: 99999999999;
+        }
+
+        .sidenav a {
+            text-decoration: none;
+            color: var(--soft-white);
+            padding: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .sidenav.active {
+            left: 0;
+        }
+
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 100000000000;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: var(--dark-navy);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        /* Update Hamburger Icon */
+.hamburger span {
+    background-color: var(--soft-white); /* Change to white */
+}
+
+/* Shift Hamburger Icon */
+.hamburger.active {
+    transform: translateX(20px); /* Moves the icon 20px to the right */
+}
+/* Hamburger Icon */
+.hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: left 0.3s ease; /* Smooth transition */
+}
+
+.hamburger.active {
+    left: 250px; /* Matches the sidenav width to align with its edge */
+}
+/* Colors */
+:root {
+            --dark-navy: #1B1F3B;
+            --soft-white: #F8F9FA;
+        }
+
+        /* Sidenav */
+        .sidenav {
+            position: fixed;
+            left: -250px;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background-color: var(--dark-navy);
+            color: var(--soft-white);
+            transition: left 0.3s;
+        }
+
+        .sidenav.active {
+            left: 0;
+        }
+
+        /* Hamburger Icon */
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: left 0.3s ease; /* Smooth transition */
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: var(--soft-white); /* White color */
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        .hamburger.active {
+            left: 250px; /* Moves to the edge of the sidenav */
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        .contact-section {
+    padding: 50px;
+    background-color: var(--dark-navy);
+    color: var(--soft-white);
+    text-align: center;
+}
+
+.contact-section h2 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--soft-white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: var(--dark-navy);
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--dark-navy);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--cyan);
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: var(--coral-red);
+}
+
+    </style>
+</head>
+<body>
+    
+    <div class="hamburger" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="sidenav" id="sidenav">
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#languages">Languages</a>
+        <a href="#contact">Contact</a>
+    </div>
+<div id="main-content">
+   <section class="parallax">
+        <h1>Hello, my name is Mohamed Diaa</h1>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="image-frame">
+            <img src="pimage.jpg" alt="About Me">
+        </div>
+        <div class="text">
+            <h2>About Me</h2>
+            <p>
+                I am a junior frontend developer with a passion for creating intuitive and responsive web designs. 
+                My goal is to build applications that provide seamless user experiences. When I’m not coding, I enjoy 
+                exploring new technologies and enhancing my skills in areas like React and UI/UX design.
+            </p>
+            <ul>
+                <li>📍 Based in Cairo, Egypt</li>
+                <li>🎓 7th Grade student at MLS school in Madinaty, New Cairo, Cairo, Egypt</li>
+                <li>💻 Skilled in HTML, CSS, JavaScript, React, and Bootstrap</li>
+                <li>🌟 Hobbies: Reading, Gaming, Programming and Robotics</li>
+                <li>🎯 Aspiration: To become a full-stack developer</li>
+            </ul>
+        </div>
+    </section>
+
+    </section>
+
+    <section class="certifications-section" id="certifications">
+        <br><br><h1 style="text-align: center; font-size: 50px; color: white;">Certifications</h1>
+        <div class="certifications-container">
+            <div class="cert-box">
+                <img src="cert1.jpg" alt="Certification 1">
+            </div>
+            <div class="cert-box">
+                <img src="cert2.jpg" alt="Certification 2">
+            </div>
+            <div class="cert-box">
+                <img src="cert3.jpg" alt="Certification 3">
+            </div>
+            <div class="cert-box">
+                <img src="cert4.jpg" alt="Certification 4">
+            </div>
+            <div class="cert-box">
+                <img src="cert5.jpg" alt="Certification 5">
+            </div>
+            <div class="cert-box">
+                <img src="cert6.jpg" alt="Certification 6">
+            </div>
+            <div class="cert-box">
+                <img src="cert7.jpg" alt="Certification 7">
+            </div>
+            <div class="cert-box">
+                <img src="cert8.png" alt="Certification 8">
+            </div>
+            <div class="cert-box">
+                <img src="cert9.png" alt="Certification 9">
+            </div>
+            <div class="cert-box">
+                <img src="cert10.png" alt="Certification 10">
+            </div>
+            <div class="cert-box">
+                <img src="cert11.png" alt="Certification 11">
+            </div>
+            <div class="cert-box">
+                <img src="cert12.png" alt="Certification 12">
+            </div>
+            
+        </div>
+        <br><br><br>
+    </section>
+    
+
+    <section class="languages-section" id="languages">
+        <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 30px;">My Skills</h1>
+        <div class="languages-container">
+
+            <div class="lang-card">
+                <img src="bootstrap.png" alt="Bootstrap">
+                <p>Bootstrap</p>
+                <span>A CSS framework for responsive design</span>
+            </div>
+            <div class="lang-card">
+                <img src="excel.png" alt="Excel">
+                <p>Excel</p>
+                <span>A tool for data analysis and visualization</span>
+            </div>
+            <div class="lang-card">
+                <img src="wordpress.png" alt="WordPress">
+                <p>WordPress</p>
+                <span>A platform for website creation and blogging</span>
+            </div>
+            <div class="lang-card">
+                <img src="python.png" alt="Python">
+                <p>Python</p>
+                <span>A versatile programming language</span>
+            </div>
+            <div class="lang-card">
+                <img src="html.png" alt="HTML">
+                <p>HTML</p>
+                <span>The foundation of web pages</span>
+            </div>
+            <div class="lang-card">
+                <img src="css.png" alt="CSS">
+                <p>CSS</p>
+                <span>For styling and layout of web pages</span>
+            </div>
+            <div class="lang-card">
+                <img src="Javascript.png.png" alt="JavaScript">
+                <p>JavaScript</p>
+                <span>A language for interactive web experiences</span>
+            </div>
+            <div class="lang-card">
+                <img src="react.png" alt="React">
+                <p>React</p>
+                <span>A library for building user interfaces</span>
+            </div>
+            <div class="lang-card">
+                <img src="figma.png" alt="Figma">
+                <p>Figma</p>
+                <span>A design tool for UI/UX prototyping</span>
+            </div>
+            <div class="lang-card">
+                <img src="draw.io.png" alt="Draw.io">
+                <p>Draw.io</p>
+                <span>A tool for creating diagrams and flowcharts</span>
+            </div>
+            <div class="lang-card">
+                <img src="agile.png" alt="Agile">
+                <p>Agile</p>
+                <span>A methodology for software development</span>
+            </div>
+            <div class="lang-card">
+                <img src="devops.png" alt="DevOps">
+                <p>DevOps</p>
+                <span>For automating and streamlining IT operations</span>
+                
+            </div>
+            
+        </div>
+        <br><br><br><br><br><br>
+    </section>
+    <section id="contact" class="contact-section">
+        <h2>Contact Me</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    
+    <footer style="background-color:black; color: white;">
+        <p style="text-align: center;"> &copy; Mohamed Diaa Atiaa 2024 </p> 
+     </footer>
+    </div>
+    
+
+    <script>
+        function toggleNav() {
+    const sidenav = document.getElementById("sidenav");
+    sidenav.classList.toggle("active");
+    
+    const hamburger = document.querySelector(".hamburger");
+    hamburger.classList.toggle("active");
+}
+document.addEventListener("DOMContentLoaded", () => {
+    const aboutSection = document.querySelector(".about-section");
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                aboutSection.classList.add("active"); // Add the active class to trigger animation
+                observer.unobserve(entry.target); // Stop observing once animation is triggered
+            }
+        });
+    }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+    observer.observe(aboutSection);
+});
+
+    </script>
+    <script>
+(function() {
+    emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS User ID
+})();
+
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm('service_zcq96si', 'YOUR_TEMPLATE_ID', this) // Replace 'YOUR_TEMPLATE_ID'
+        .then(() => {
+            alert("Message sent successfully!");
+            this.reset();
+        }, (error) => {
+            alert("Failed to send the message. Please try again.");
+            console.error(error);
+        });
+});
+
+    </script>
+    
+</body>
+
+</html>
+
