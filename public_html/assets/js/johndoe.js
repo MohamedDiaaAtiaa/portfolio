@@ -1,18 +1,13 @@
-/*!
-=========================================================
-* JohnDoe Landing page
-=========================================================
 
-* Copyright: 2019 DevCRUD (https://devcrud.com)
-* Licensed: (https://devcrud.com/licenses)
-* Coded by www.devcrud.com
 
-=========================================================
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.querySelector(".certifications-container");
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// smooth scroll
+  container.addEventListener("wheel", (event) => {
+      event.preventDefault();
+      container.scrollLeft += event.deltaY;
+  });
+});
 $(document).ready(function(){
     $(".navbar .nav-link").on('click', function(event) {
 
